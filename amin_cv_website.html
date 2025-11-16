@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amin Ariful - Global Business Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066cc;
+            --secondary: #00b8d4;
+            --accent: #ff6b35;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 5px 15px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: var(--gradient);
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            padding: 40px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero-location {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--dark);
+        }
+
+        /* Metrics Section */
+        .metrics {
+            padding: 80px 40px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .metric-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Story Section */
+        .story {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 60px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: var(--gradient);
+        }
+
+        .timeline-item {
+            margin-bottom: 60px;
+            position: relative;
+            padding-left: 40px;
+            opacity: 0;
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -47px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 4px solid var(--dark);
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .timeline-title {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .timeline-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .impact-tag {
+            display: inline-block;
+            background: var(--gradient);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 100px 40px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .skills-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .skill-category h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 10px;
+            animation: fillBar 1.5s ease forwards;
+        }
+
+        @keyframes fillBar {
+            from { width: 0; }
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        /* Language specific content */
+        [lang="jp"] {
+            display: none;
+        }
+
+        body.jp [lang="en"] {
+            display: none;
+        }
+
+        body.jp [lang="jp"] {
+            display: block;
+        }
+
+        body.jp .timeline-item {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .timeline {
+                padding-left: 20px;
+            }
+
+            .timeline-dot {
+                left: -29px;
+            }
+        }
+
+        /* Scroll Animation */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-20px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+        <button class="lang-btn" onclick="setLanguage('jp')">JP</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title" lang="en">Amin Ariful</h1>
+            <h1 class="hero-title" lang="jp">アミン・アリフル</h1>
+            
+            <p class="hero-subtitle" lang="en">Global Business Developer & Cross-Border Strategist</p>
+            <p class="hero-subtitle" lang="jp">グローバルビジネス開発者・国際戦略家</p>
+            
+            <p class="hero-location" lang="en">📍 Osaka, Japan | 🌏 Bridging 6+ Countries</p>
+            <p class="hero-location" lang="jp">📍 大阪、日本 | 🌏 6カ国以上をつなぐ</p>
+            
+            <div class="cta-buttons">
+                <a href="#story" class="btn btn-primary" lang="en">View My Impact</a>
+                <a href="#story" class="btn btn-primary" lang="jp">実績を見る</a>
+                <a href="#contact" class="btn btn-secondary" lang="en">Get In Touch</a>
+                <a href="#contact" class="btn btn-secondary" lang="jp">お問い合わせ</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span style="font-size: 2rem;">↓</span>
+        </div>
+    </section>
+
+    <!-- Metrics Section -->
+    <section class="metrics">
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-number">67%</div>
+                <div class="metric-label" lang="en">HK Sales Growth</div>
+                <div class="metric-label" lang="jp">香港売上成長率</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">¥4M</div>
+                <div class="metric-label" lang="en">Annual Profit Generated</div>
+                <div class="metric-label" lang="jp">年間利益創出</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">3</div>
+                <div class="metric-label" lang="en">New International Clients</div>
+                <div class="metric-label" lang="jp">新規海外クライアント</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">6+</div>
+                <div class="metric-label" lang="en">Countries Connected</div>
+                <div class="metric-label" lang="jp">接続国数</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story" id="story">
+        <h2 class="section-title" lang="en">My Impact Story</h2>
+        <h2 class="section-title" lang="jp">インパクトストーリー</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title" lang="en">🚀 Website Transformation → New Market Entry</h3>
+                    <h3 class="timeline-title" lang="jp">🚀 ウェブサイト改革 → 新市場参入</h3>
+                    
+                    <p class="timeline-description" lang="en">
+                        Within 2 months of joining, completely rebuilt Bangladesh subsidiary website from scratch. Result: Attracted 3 new international clients (UK & US) and generated $15K-18K monthly B2B revenue.
+                    </p>
+                    <p class="timeline-description" lang="jp">
+                        入社後2ヶ月以内にバングラデシュ子会社のウェブサイトを完全再構築。結果：英国と米国から3社の新規クライアントを獲得し、月間1.5万〜1.8万ドルのB2B収益を創出。
+                    </p>
+                    
+                    <span class="impact-tag" lang="en">Revenue Generation</span>
+                    <span class="impact-tag" lang="jp">収益創出</span>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title" lang="en">📈 Hong Kong Market Breakthrough</h3>
+                    <h3 class="timeline-title" lang="jp">📈 香港市場ブレークスルー</h3>
+                    
+                    <p class="timeline-description" lang="en">
+                        Identified pricing inefficiencies through market research. Facilitated direct distributor-buyer communication, improving margins. Grew monthly sales from $15K to $25K (67% increase).
+                    </p>
+                    <p class="timeline-description" lang="jp">
+                        市場調査により価格設定の非効率性を特定。流通業者とバイヤー間の直接コミュニケーションを促進し、マージンを改善。月間売上を1.5万ドルから2.5万ドルへ成長（67%増）。
+                    </p>
+                    
+                    <span class="impact-tag" lang="en">Strategic Growth</span>
+                    <span class="impact-tag" lang="jp">戦略的成長</span>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title" lang="en">🌽 Product Innovation Leadership</h3>
+                    <h3 class="timeline-title" lang="jp">🌽 製品イノベーションリーダーシップ</h3>
+                    
+                    <p class="timeline-description" lang="en">
+                        Led Mini Corn project end-to-end: transitioned production to Bangladesh subsidiary, managed cultivation & QC. Generated ¥4M annual profit while building local capabilities.
+                    </p>
+                    <p class="timeline-description" lang="jp">
+                        ミニコーンプロジェクトをエンドツーエンドでリード：バングラデシュ子会社への生産移管、栽培・品質管理を統括。年間400万円の利益を創出し、現地能力を構築。
+                    </p>
+                    
+                    <span class="impact-tag" lang="en">Product Development</span>
+                    <span class="impact-tag" lang="jp">製品開発</span>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title" lang="en">🎯 Strategic Market Entry: Bangladesh</h3>
+                    <h3 class="timeline-title" lang="jp">🎯 戦略的市場参入：バングラデシュ</h3>
+                    
+                    <p class="timeline-description" lang="en">
+                        Conducted comprehensive Bangladesh pet market research presented to CEO & senior management. Result: Company decision to establish sales operations with consideration for my leadership role.
+                    </p>
+                    <p class="timeline-description" lang="jp">
+                        バングラデシュペット市場の包括的調査を実施し、CEOと経営陣に提案。結果：企業が販売拠点設立を決定し、私のリーダーシップ役割を検討。
+                    </p>
+                    
+                    <span class="impact-tag" lang="en">Strategic Planning</span>
+                    <span class="impact-tag" lang="jp">戦略立案</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills">
+        <div class="skills-container">
+            <h2 class="section-title" lang="en">Core Competencies</h2>
+            <h2 class="section-title" lang="jp">コア・コンピテンシー</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 lang="en">🌐 Cross-Border Strategy</h3>
+                    <h3 lang="jp">🌐 国際戦略</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span lang="en">Global Coordination</span>
+                            <span lang="jp">グローバル調整</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span lang="en">Market Research</span>
+                            <span lang="jp">市場調査</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span lang="en">Business Development</span>
+                            <span lang="jp">事業開発</span>
+                            <span>92%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 92%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 lang="en">💼 Business Skills</h3>
+                    <h3 lang="jp">💼 ビジネススキル</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span lang="en">Data Analysis</span>
+                            <span lang="jp">データ分析</span>
+                            <span>88%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span lang="en">Project Management</span>
+                            <span lang="jp">プロジェクト管理</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span lang="en">Strategic Planning</span>
+                            <span lang="jp">戦略立案</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 lang="en">🗣️ Languages</h3>
+                    <h3 lang="jp">🗣️ 言語能力</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span lang="en">English (TOEIC 910)</span>
+                            <span lang="jp">英語 (TOEIC 910)</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span lang="en">Japanese (JLPT N3)</span>
+                            <span lang="jp">日本語 (JLPT N3)</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span lang="en">Bangla (Native)</span>
+                            <span lang="jp">ベンガル語 (ネイティブ)</span>
+                            <span>100%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <h2 class="section-title" lang="en">Let's Connect</h2>
+            <h2 class="section-title" lang="jp">お問い合わせ</h2>
+            
+            <p lang="en" style="font-size: 1.2rem; margin-bottom: 40px; color: rgba(255,255,255,0.8);">
+                Ready to drive global growth and cross-border innovation together?
+            </p>
+            <p lang="jp" style="font-size: 1.2rem; margin-bottom: 40px; color: rgba(255,255,255,0.8);">
+                一緒にグローバル成長と国際的イノベーションを推進しませんか？
+            </p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span style="font-size: 1.5rem;">📧</span>
+                    <span>amin.ariful.tiu@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <span style="font-size: 1.5rem;">📍</span>
+                    <span lang="en">Osaka, Japan</span>
+                    <span lang="jp">大阪、日本</span>
+                </div>
+                <div class="contact-item">
+                    <span style="font-size: 1.5rem;">🌏</span>
+                    <span lang="en">Japan • Bangladesh • India • Hong Kong • UK • US</span>
+                    <span lang="jp">日本 • バングラデシュ • インド • 香港 • 英国 • 米国</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function setLanguage(lang) {
+            const body = document.body;
+            const buttons = document.querySelectorAll('.lang-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (lang === 'jp') {
+                body.classList.add('jp');
+            } else {
+                body.classList.remove('jp');
+            }
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
